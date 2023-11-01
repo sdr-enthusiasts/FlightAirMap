@@ -694,7 +694,7 @@ class simple_html_dom_node
 		$result = array();
 		//print_r($matches);
 
-		foreach ($matches as $m) {
+		foreach ($matches ?? [] as $m) {
 			$m[0] = trim($m[0]);
 			if ($m[0]==='' || $m[0]==='/' || $m[0]==='//') continue;
 			// for browser generated xpath
@@ -1382,7 +1382,7 @@ class simple_html_dom
 			return true;
 		}
 
-		if (!preg_match("/^[\w-:]+$/", $tag)) {
+		if (!preg_match("/^[\w\-:]+$/", $tag)) {
 			$node->_[HDOM_INFO_TEXT] = '<' . $tag . $this->copy_until('<>');
 			if ($this->char==='<') {
 				$this->link_nodes($node, false);
